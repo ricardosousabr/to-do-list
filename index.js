@@ -12,11 +12,22 @@ function addTask() {
 
   addItem.innerHTML = input.value.trim();
   list.prepend(addItem);
+  addBtnEditItem();
   addBtnRemoveItem();
 }
 
 function clearInput() {
   input.value = '';
+}
+
+function addBtnEditItem() {
+  const item = document.querySelector('li');
+  const bntEditItem = document.createElement('button');
+  const itemValue = item.value;
+
+  bntEditItem.addEventListener('click', () => console.log(itemValue));
+  bntEditItem.innerHTML = 'Editar';
+  item.appendChild(bntEditItem);
 }
 
 function addBtnRemoveItem() {
