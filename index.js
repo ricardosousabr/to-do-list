@@ -25,13 +25,28 @@ function addBtnEditItem() {
   const bntEditItem = document.createElement('button');
   const itemValue = item.value;
 
-  bntEditItem.addEventListener('click', () => console.log(itemValue));
+  bntEditItem.addEventListener('click', () => {
+    console.log('Hello');
+    const addEditInput = document.createElement('input');
+    item.prepend(addEditInput);
+    addBtnSaveItem();
+    bntEditItem.remove;
+  });
   bntEditItem.innerHTML = 'Editar';
   item.appendChild(bntEditItem);
 }
 
+function addBtnSaveItem() {
+  const item = document.querySelector('li');
+  const bntSaveItem = document.createElement('button');
+
+  item.prepend(bntSaveItem);
+  bntEditItem.addEventListener('click', () => console.log('Hello'));
+}
+
 function addBtnRemoveItem() {
   const item = document.querySelector('li');
+  bntRemoveItem.innerHTML = 'Salvar';
   const bntRemoveItem = document.createElement('button');
 
   bntRemoveItem.addEventListener('click', () => item.remove());
