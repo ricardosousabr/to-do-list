@@ -12,46 +12,65 @@ function addTask() {
 
   addItem.innerHTML = input.value.trim();
   list.prepend(addItem);
-  addBtnEditItem();
-  addBtnRemoveItem();
+  addItem.appendChild(buttonsContainer());
 }
 
 function clearInput() {
   input.value = '';
 }
 
+function buttonsContainer() {
+  const container = document.createElement('div');
+
+  container.appendChild(addBtnSaveItem());
+  container.appendChild(addBtnEditItem());
+  container.appendChild(addBtnRemoveItem());
+
+  return container;
+}
+
 function addBtnEditItem() {
   const item = document.querySelector('li');
-  const bntEditItem = document.createElement('button');
-  const itemValue = item.value;
+  const btnEditItem = document.createElement('button');
 
-  bntEditItem.addEventListener('click', () => {
-    console.log('Hello');
-    const addEditInput = document.createElement('input');
-    item.prepend(addEditInput);
-    addBtnSaveItem();
-    bntEditItem.remove;
+  btnEditItem.classList.add('edit-task');
+
+  btnEditItem.addEventListener('click', () => {
+    btnEditItem.classList.add('btn-hidden');
+    document.querySelector('.save-task').classList.remove('btn-hidden');
   });
-  bntEditItem.innerHTML = 'Editar';
-  item.appendChild(bntEditItem);
+
+  btnEditItem.innerHTML = 'Editar';
+
+  return btnEditItem;
 }
 
 function addBtnSaveItem() {
-  const item = document.querySelector('li');
-  const bntSaveItem = document.createElement('button');
+  const btnSaveItem = document.createElement('button');
 
-  item.prepend(bntSaveItem);
-  bntEditItem.addEventListener('click', () => console.log('Hello'));
+  btnSaveItem.classList.add('save-task');
+  btnSaveItem.classList.add('btn-hidden');
+
+  btnSaveItem.addEventListener('click', () => {
+    btnSaveItem.classList.add('btn-hidden');
+    document.querySelector('.edit-task').classList.remove('btn-hidden');
+  });
+
+  btnSaveItem.innerHTML = 'Salvar';
+
+  return btnSaveItem;
 }
 
 function addBtnRemoveItem() {
   const item = document.querySelector('li');
-  bntRemoveItem.innerHTML = 'Salvar';
-  const bntRemoveItem = document.createElement('button');
+  const btnRemoveItem = document.createElement('button');
 
-  bntRemoveItem.addEventListener('click', () => item.remove());
-  bntRemoveItem.innerHTML = 'Remover';
-  item.appendChild(bntRemoveItem);
+  btnRemoveItem.addEventListener('click', () => item.remove());
+  btnRemoveItem.innerHTML = 'Remover';
+
+  console.log(item.textContent);
+
+  return btnRemoveItem;
 }
 
 function handleSubmit(event) {
