@@ -1,3 +1,11 @@
-.btn-hidden {
+.editing .edit-item {
+  display: none;
+}
+
+.editing .save-item {
+  display: block
+}
+
+.save-item {
   display: none;
 }

@@ -30,14 +30,13 @@ function buttonsContainer() {
 }
 
 function addBtnEditItem() {
-  const item = document.querySelector('li');
+  const addItem = document.querySelector('li');
   const btnEditItem = document.createElement('button');
 
-  btnEditItem.classList.add('edit-task');
+  btnEditItem.classList.add('edit-item');
 
   btnEditItem.addEventListener('click', () => {
-    btnEditItem.classList.add('btn-hidden');
-    document.querySelector('.save-task').classList.remove('btn-hidden');
+    addItem.classList.add('editing');
   });
 
   btnEditItem.innerHTML = 'Editar';
@@ -46,14 +45,13 @@ function addBtnEditItem() {
 }
 
 function addBtnSaveItem() {
+  const addItem = document.querySelector('li');
   const btnSaveItem = document.createElement('button');
 
-  btnSaveItem.classList.add('save-task');
-  btnSaveItem.classList.add('btn-hidden');
+  btnSaveItem.classList.add('save-item');
 
   btnSaveItem.addEventListener('click', () => {
-    btnSaveItem.classList.add('btn-hidden');
-    document.querySelector('.edit-task').classList.remove('btn-hidden');
+    addItem.classList.remove('editing');
   });
 
   btnSaveItem.innerHTML = 'Salvar';
