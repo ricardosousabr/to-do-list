@@ -22,11 +22,20 @@ function clearInput() {
 function buttonsContainer() {
   const container = document.createElement('div');
 
+  container.appendChild(createEditInput());
   container.appendChild(addBtnSaveItem());
   container.appendChild(addBtnEditItem());
   container.appendChild(addBtnRemoveItem());
 
   return container;
+}
+
+function createEditInput() {
+  const editInput = document.createElement('input');
+
+  editInput.classList.add('edit-input');
+
+  return editInput;
 }
 
 function addBtnEditItem() {
