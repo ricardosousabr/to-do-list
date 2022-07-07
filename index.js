@@ -11,7 +11,8 @@ function addTask() {
   const addItem = document.createElement('li');
 
   addItem.innerHTML = input.value.trim();
-  list.prepend(addItem);
+  list.appendChild(addItem);
+  addItem.appendChild(createEditInput());
   addItem.appendChild(buttonsContainer());
 }
 
@@ -22,7 +23,6 @@ function clearInput() {
 function buttonsContainer() {
   const container = document.createElement('div');
 
-  container.appendChild(createEditInput());
   container.appendChild(addBtnSaveItem());
   container.appendChild(addBtnEditItem());
   container.appendChild(addBtnRemoveItem());
@@ -31,9 +31,11 @@ function buttonsContainer() {
 }
 
 function createEditInput() {
+  const task = document.querySelector('li').innerHTML;
   const editInput = document.createElement('input');
 
   editInput.classList.add('edit-input');
+  editInput.setAttribute('value', task);
 
   return editInput;
 }
@@ -45,7 +47,7 @@ function addBtnEditItem() {
   btnEditItem.classList.add('edit-item');
 
   btnEditItem.addEventListener('click', () => {
-    addItem.classList.add('editing');
+    btnEditItem.closest('li').classList.add('editing');
   });
 
   btnEditItem.innerHTML = 'Editar';
@@ -60,7 +62,7 @@ function addBtnSaveItem() {
   btnSaveItem.classList.add('save-item');
 
   btnSaveItem.addEventListener('click', () => {
-    addItem.classList.remove('editing');
+    btnSaveItem.closest('li').classList.remove('editing');
   });
 
   btnSaveItem.innerHTML = 'Salvar';
@@ -69,13 +71,13 @@ function addBtnSaveItem() {
 }
 
 function addBtnRemoveItem() {
-  const item = document.querySelector('li');
   const btnRemoveItem = document.createElement('button');
 
-  btnRemoveItem.addEventListener('click', () => item.remove());
-  btnRemoveItem.innerHTML = 'Remover';
+  btnRemoveItem.addEventListener('click', () => {
+    btnRemoveItem.closest('li').remove();
+  });
 
-  console.log(item.textContent);
+  btnRemoveItem.innerHTML = 'Remover';
 
   return btnRemoveItem;
 }
