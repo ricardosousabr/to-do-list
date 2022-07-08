@@ -9,10 +9,11 @@ function checkInputValue() {
 
 function addTask() {
   const addItem = document.createElement('li');
+  const taskValue = input.value.trim();
 
-  addItem.innerHTML = input.value.trim();
+  addItem.innerHTML = taskValue;
   list.appendChild(addItem);
-  addItem.appendChild(createEditInput());
+  addItem.appendChild(createEditInput(taskValue));
   addItem.appendChild(buttonsContainer());
 }
 
@@ -30,18 +31,16 @@ function buttonsContainer() {
   return container;
 }
 
-function createEditInput() {
-  const task = document.querySelector('li').innerHTML;
+function createEditInput(taskValue) {
   const editInput = document.createElement('input');
 
   editInput.classList.add('edit-input');
-  editInput.setAttribute('value', task);
+  editInput.setAttribute('value', taskValue);
 
   return editInput;
 }
 
 function addBtnEditItem() {
-  const addItem = document.querySelector('li');
   const btnEditItem = document.createElement('button');
 
   btnEditItem.classList.add('edit-item');
