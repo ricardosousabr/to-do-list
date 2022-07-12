@@ -17,3 +17,7 @@
 .save-item {
   display: none;
 }
+
+.task-hidden {
+  display: none;
+}
