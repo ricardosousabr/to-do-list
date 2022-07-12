@@ -9,9 +9,11 @@ function checkInputValue() {
 
 function addTask() {
   const addItem = document.createElement('li');
+  const tesk = document.createElement('span');
   const taskValue = input.value.trim();
 
-  addItem.innerHTML = taskValue;
+  addItem.appendChild(tesk);
+  tesk.innerHTML = taskValue;
   list.appendChild(addItem);
   addItem.appendChild(createEditInput(taskValue));
   addItem.appendChild(buttonsContainer());
@@ -42,7 +44,6 @@ function createEditInput(taskValue) {
 
 function addBtnEditItem() {
   const btnEditItem = document.createElement('button');
-
   btnEditItem.classList.add('edit-item');
 
   btnEditItem.addEventListener('click', () => {
@@ -55,13 +56,16 @@ function addBtnEditItem() {
 }
 
 function addBtnSaveItem() {
-  const addItem = document.querySelector('li');
   const btnSaveItem = document.createElement('button');
+  const updatedTask = document.createElement('span');
 
   btnSaveItem.classList.add('save-item');
-
   btnSaveItem.addEventListener('click', () => {
-    btnSaveItem.closest('li').classList.remove('editing');
+    const item = btnSaveItem.closest('li');
+    const inputEdit = item.querySelector('.edit-input');
+    item.classList.remove('editing');
+    item.appendChild(updatedTask);
+    updatedTask.innerHTML = inputEdit.value;
   });
 
   btnSaveItem.innerHTML = 'Salvar';
