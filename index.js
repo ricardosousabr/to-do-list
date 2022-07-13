@@ -12,6 +12,7 @@ function addTask() {
   const createTesk = document.createElement('span');
   const taskValue = input.value.trim();
 
+  addItem.classList.add('list-item');
   createTesk.classList.add('task');
   addItem.prepend(createTesk);
   createTesk.innerHTML = taskValue;
@@ -27,6 +28,7 @@ function clearInput() {
 function buttonsContainer() {
   const container = document.createElement('div');
 
+  container.classList.add('btn-box');
   container.appendChild(addBtnSaveItem());
   container.appendChild(addBtnEditItem());
   container.appendChild(addBtnRemoveItem());
@@ -45,8 +47,8 @@ function createEditInput(taskValue) {
 
 function addBtnEditItem() {
   const btnEditItem = document.createElement('button');
-  btnEditItem.classList.add('edit-item');
 
+  btnEditItem.classList.add('edit-item', 'btn');
   btnEditItem.addEventListener('click', () => {
     const item = btnEditItem.closest('li');
     btnEditItem.closest('li').classList.add('editing');
@@ -61,7 +63,7 @@ function addBtnEditItem() {
 function addBtnSaveItem() {
   const btnSaveItem = document.createElement('button');
 
-  btnSaveItem.classList.add('save-item');
+  btnSaveItem.classList.add('save-item', 'btn');
   btnSaveItem.addEventListener('click', () => {
     const updatedTask = document.createElement('span');
     const item = btnSaveItem.closest('li');
@@ -80,6 +82,7 @@ function addBtnSaveItem() {
 function addBtnRemoveItem() {
   const btnRemoveItem = document.createElement('button');
 
+  btnRemoveItem.classList.add('btn');
   btnRemoveItem.addEventListener('click', () => {
     btnRemoveItem.closest('li').remove();
   });
